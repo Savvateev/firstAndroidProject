@@ -37,7 +37,8 @@
         app:layout_constraintTop_toBottom0f="@id/author"
         app:layout_constraintStart_toEnd0f="@id/avatar"
         android:layout_marginStart="16dp"
-        android:text="@string/avatar_date" />
+        android:text="@string/avatar_date"
+        />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -45,5 +46,6 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/baseline_more_vert_24"
         tools:layout_editor_absoluteX="354dp"
-        tools:layout_editor_absoluteY="17dp" />
+        tools:layout_editor_absoluteY="17dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
