@@ -26,6 +26,7 @@
         app:layout_constraintBottom_toTopOf="@id/published"
         app:layout_constraintTop_toTopOf="@id/avatar"
         app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:text="@string/avatar_text" />
 
@@ -47,7 +48,6 @@
         android:contentDescription="@null"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        app:layout_constraintStart_toEndOf="@id/author"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/baseline_more_vert_24"
@@ -80,10 +80,11 @@
         android:id="@+id/likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cardview_default_elevation"
         app:barrierDirection="bottom"
         app:layout_constraintStart_toStartOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/linkView"
-        app:srcCompat="@drawable/baseline_heart_broken_24"
+        app:srcCompat="@drawable/baseline_favorite_border_24"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="309dp" />
 
@@ -127,7 +128,7 @@
         app:layout_constraintBottom_toBottomOf="@id/likes"
         app:layout_constraintTop_toTopOf="@id/likes"
         app:layout_constraintStart_toEndOf="@id/likes"
-        android:text="@string/countOfLikes"
+        android:text="@integer/countOfLikes"
         tools:layout_editor_absoluteX="35dp"
         tools:layout_editor_absoluteY="314dp" />
 
@@ -141,7 +142,5 @@
         android:text="@string/countOfshares"
         tools:layout_editor_absoluteX="97dp"
         tools:layout_editor_absoluteY="320dp" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
