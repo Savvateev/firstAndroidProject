@@ -58,9 +58,15 @@ class MainActivity : AppCompatActivity() {
                     else  R.drawable.baseline_favorite_border_24
                 )
             }
+            root.setOnClickListener {
+                println()
+            }
             share?.setOnClickListener {
                 countOfShare += 1
                 countOfSharesView.text = toView(countOfShare)
+            }
+            avatar?.setOnClickListener {
+                println()
             }
         }
     }
