@@ -26,7 +26,6 @@
         app:layout_constraintBottom_toTopOf="@id/published"
         app:layout_constraintTop_toTopOf="@id/avatar"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
         android:text="@string/avatar_text" />
 

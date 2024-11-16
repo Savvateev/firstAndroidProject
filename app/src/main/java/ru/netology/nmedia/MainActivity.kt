@@ -7,18 +7,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import java.math.RoundingMode
 import kotlin.math.truncate
 
 data class Post
     (val id: Int,
      val author: String, val content: String,
-     val published: String, var likedByMe: Boolean)
+     val published: String, var likedByMe: Boolean,
+     var countOfLikes : Int, var countOfShare : Int, var countOfView : Int)
 
 fun toView(count : Int) : String {
     return when (count) {
         in 1..999 -> count.toString()
-        in 1000..999999 -> ((count/1000).toDouble()).toString() + "K "
-        in 1000000..100000000 -> ((count/1000000).toDouble()).toString() + "M "
+        in 1000..1099 -> "1K "
+        in 1100..999999 -> ((count.toFloat()/1000).toBigDecimal().setScale(1,RoundingMode.DOWN).toString()) + "K "
+        in 1000000..1099000 -> "1M "
+        in 1100000..100000000 -> ((count.toFloat()/1000000).toBigDecimal().setScale(1, RoundingMode.DOWN)).toString() + "M "
         else -> "0"
     }
 }
@@ -33,34 +37,34 @@ class MainActivity : AppCompatActivity() {
             author = "Нетология. Университет интернет-профессий будущего",
             content = "Привет, это новая Нетология! Когда-то Нетология начиналась с интенс ... ",
             published = "21 мая в 18:36",
-            likedByMe = false
+            likedByMe = false,
+            countOfLikes = 11,
+            countOfShare = 1110000,
+            countOfView = 1199
         )
         with (binding) {
-            var countOfLikes = 11
-            var countOfShare = 11
-            var countOfView = 1100
             author.text = post.author
             published.text = post.published
             PostTextView.text = post.content
-            countOfLikesView.text = toView(countOfLikes)
-            countOfSharesView.text = toView(countOfShare)
-            countOfVView.text = toView(countOfView)
+            countOfLikesView.text = toView(post.countOfLikes)
+            countOfSharesView.text = toView(post.countOfShare)
+            countOfVView.text = toView(post.countOfView)
             if (post.likedByMe) {
                 likes?.setImageResource(R.drawable.baseline_favorite_24)
             }
             likes?.setOnClickListener {
                 post.likedByMe = !post.likedByMe
-                if (post.likedByMe) countOfLikes += 1
-                else countOfLikes -= 1
-                countOfLikesView.text = toView(countOfLikes)
+                if (post.likedByMe) post.countOfLikes += 1
+                else post.countOfLikes -= 1
+                countOfLikesView.text = toView(post.countOfLikes)
                 likes.setImageResource(
                     if (post.likedByMe) R.drawable.baseline_favorite_24
                     else  R.drawable.baseline_favorite_border_24
                 )
             }
             share?.setOnClickListener {
-                countOfShare += 1
-                countOfSharesView.text = toView(countOfShare)
+                post.countOfShare += 1
+                countOfSharesView.text = toView(post.countOfShare)
             }
         }
     }
