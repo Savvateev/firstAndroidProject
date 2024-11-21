@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
+
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,19 +11,13 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 import java.math.RoundingMode
 import kotlin.math.truncate
 
-data class Post
-    (val id: Int,
-     val author: String, val content: String,
-     val published: String, var likedByMe: Boolean,
-     var countOfLikes : Int, var countOfShare : Int, var countOfView : Int)
-
 fun toView(count : Int) : String {
     return when (count) {
         in 1..999 -> count.toString()
         in 1000..1099 -> "1K "
         in 1100..10000 -> ((count.toFloat()/1000).toBigDecimal().setScale(1,RoundingMode.DOWN).toString()) + "K "
         in 10001..999999 -> ((count.toFloat()/1000).toBigDecimal().setScale(0,RoundingMode.DOWN).toString()) + "K "
-        in 1000000..1099000 -> "1M "
+        in 1000000..1099999 -> "1M "
         in 1100000..100000000 -> ((count.toFloat()/1000000).toBigDecimal().setScale(0, RoundingMode.DOWN)).toString() + "M "
         else -> "0"
     }
