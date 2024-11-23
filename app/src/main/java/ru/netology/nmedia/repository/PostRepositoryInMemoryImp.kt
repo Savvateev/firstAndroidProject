@@ -20,12 +20,12 @@ class PostRepositoryInMemoryImpl : PostRepository {
     override fun get(): LiveData<Post> = data
     override fun like() {
         post = post.copy(likedByMe = !post.likedByMe)
-        if (post.likedByMe) post.countOfLikes += 1
-        else post.countOfLikes -= 1
+        if (post.likedByMe) post = post.copy(countOfLikes = post.countOfLikes + 1)
+        else post = post.copy(countOfLikes = post.countOfLikes - 1)
         data.value = post
     }
     override fun share() {
-        post.countOfShare += 1
+        post = post.copy(countOfShare = post.countOfShare + 1)
         data.value = post
     }
 }
