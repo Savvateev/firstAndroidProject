@@ -7,12 +7,10 @@ import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 
-typealias OnClickListener = (post: Post) -> Unit
+typealias OnLikeListener = (post: Post) -> Unit
+typealias OnShareListener = (post: Post) -> Unit
 
-//typealias OnLikeListener = (post: Post) -> Unit
-//typealias OnShareListener = (post: Post) -> Unit
-
-class PostsAdapter(private val onClickListener: OnClickListener) : RecyclerView.Adapter<PostViewHolder>() {
+class PostsAdapter(private val onLikeListener: OnLikeListener, private val onShareListener: OnShareListener) : RecyclerView.Adapter<PostViewHolder>() {
     var list = emptyList<Post>()
         set(value) {
             field = value
@@ -21,7 +19,7 @@ class PostsAdapter(private val onClickListener: OnClickListener) : RecyclerView.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding, onClickListener)
+        return PostViewHolder(binding, onLikeListener, onShareListener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -34,9 +32,8 @@ class PostsAdapter(private val onClickListener: OnClickListener) : RecyclerView.
 
 class PostViewHolder(
     private val binding: CardPostBinding,
-//    private val onLikeListener: OnLikeListener,
-//    private val onShareListener: OnShareListener,
-    private val onClickListener: OnClickListener,
+    private val onLikeListener: OnLikeListener,
+    private val onShareListener: OnShareListener,
 
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post: Post) {
@@ -51,10 +48,10 @@ class PostViewHolder(
             countOfSharesView.text = post.countOfShare.toString()
             countOfVView.text = post.countOfView.toString()
             like.setOnClickListener{
-                onClickListener(post)
+                onLikeListener(post)
             }
             share.setOnClickListener{
-                onClickListener(post)
+                onShareListener(post)
             }
         }
     }
