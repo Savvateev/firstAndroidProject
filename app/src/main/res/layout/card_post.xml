@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/published"
-        app:layout_constraintEnd_toStartOf="@id/ButtonImage"
+        app:layout_constraintEnd_toStartOf="@id/menu"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
         android:layout_marginStart="16dp"
@@ -42,7 +42,7 @@
         android:text="@string/avatar_date" />
 
     <ImageView
-        android:id="@+id/ButtonImage"
+        android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@null"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="avatar,published,ButtonImage" />
+        app:constraint_referenced_ids="avatar,published,menu" />
 
     <TextView
         android:id="@+id/content"
@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintTop_toTopOf="@id/share"
-        app:layout_constraintEnd_toEndOf="@id/ButtonImage"
+        app:layout_constraintEnd_toEndOf="@id/menu"
         android:text="@string/countOfViews"
         tools:layout_editor_absoluteX="218dp"
         tools:layout_editor_absoluteY="340dp" />
