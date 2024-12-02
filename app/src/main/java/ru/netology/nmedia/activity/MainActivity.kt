@@ -1,6 +1,8 @@
 package ru.netology.nmedia.activity
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -43,6 +45,23 @@ class MainActivity : AppCompatActivity() {
         viewModel.data.observe(this) { posts ->
             adapter.submitList(posts)
         }
+
+
+        binding.content.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                binding.group.visibility = View.VISIBLE
+                // Вызывается перед изменением текста
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                TODO("Not yet implemented")
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                binding.group.visibility = View.INVISIBLE
+                TODO("Not yet implemented")
+            }
+        })
 
         viewModel.edited.observe(this) { post ->
             if (post.id == 0L) {
