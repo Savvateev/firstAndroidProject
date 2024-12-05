@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.cancelButton.setOnClickListener {
+            viewModel.cancelEdit()
             with(binding.content) {
                 setText("")
                 clearFocus()
