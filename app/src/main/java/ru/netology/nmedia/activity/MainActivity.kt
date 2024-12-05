@@ -46,22 +46,13 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
-
-        binding.content.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                binding.group.visibility = View.VISIBLE
-                // Вызывается перед изменением текста
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
+        binding.content.setOnFocusChangeListener { currentView, hasFocus ->
+            if (!hasFocus) {
                 binding.group.visibility = View.INVISIBLE
-                TODO("Not yet implemented")
+            } else {
+                binding.group.visibility = View.VISIBLE
             }
-        })
+        }
 
         viewModel.edited.observe(this) { post ->
             if (post.id == 0L) {
@@ -78,7 +69,6 @@ class MainActivity : AppCompatActivity() {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
-                binding.group.visibility = View.INVISIBLE
             }
         }
 
@@ -97,7 +87,6 @@ class MainActivity : AppCompatActivity() {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
-                binding.group.visibility = View.INVISIBLE
             }
         }
     }
