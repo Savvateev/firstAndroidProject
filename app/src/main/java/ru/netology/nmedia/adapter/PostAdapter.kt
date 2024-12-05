@@ -42,10 +42,12 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            like.setImageResource(
-                if (post.likedByMe) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
-            )
-            countOfLikesView.text = post.countOfLikes.toString()
+//            like.setImageResource(
+//                if (post.likedByMe) R.drawable.baseline_favorite_24 else R.drawable.baseline_favorite_border_24
+//            )
+            like.isChecked = post.likedByMe
+            like.text = "${post.countOfLikes}"
+            // countOfLikesView.text = post.countOfLikes.toString()
             countOfSharesView.text = post.countOfShare.toString()
             countOfVView.text = post.countOfView.toString()
             menu.setOnClickListener {

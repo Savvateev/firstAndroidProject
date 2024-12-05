@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         val adapter = PostsAdapter(object : OnInteractionListener {
 
             override fun onEdit(post: Post) {
-                binding.group.visibility = View.VISIBLE
                 viewModel.edit(post)
             }
 
