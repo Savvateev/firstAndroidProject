@@ -6,6 +6,7 @@ data class Post
     val author: String,
     val content: String,
     val published: String,
+    val videoUrl: String ="",
     val likedByMe: Boolean,
     val countOfLikes: Int,
     val countOfShare: Int,

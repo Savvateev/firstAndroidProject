@@ -41,6 +41,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.activity)
     val coreVersion = "1.15.0"
     val appcompatVersion = "1.7.0"
     val mdcVersion = "1.12.0"
