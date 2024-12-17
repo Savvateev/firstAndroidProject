@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:autofillHints="Введите текст"
+        android:text=""
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:background="@android:color/transparent"
@@ -29,8 +30,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/description_post_save"
-        app:srcCompat="@drawable/ic_ok_24dp"
-        app:layout_anchor="@id/bottomAppBar"
-        />
+        android:layout_gravity="start|bottom"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_ok_24dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/description_post_cancel"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_cancel_24"
+    />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -27,5 +27,8 @@ class EditPostActivity : AppCompatActivity() {
             }
             finish()
         }
+        binding.cancel.setOnClickListener{
+            finish()
+        }
     }
 }

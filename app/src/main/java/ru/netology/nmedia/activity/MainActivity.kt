@@ -1,17 +1,12 @@
 package ru.netology.nmedia.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.ActivityEditPostBinding
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
@@ -31,8 +26,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = PostsAdapter(object : OnInteractionListener {
 
             override fun onEdit(post: Post) {
-                //val content = post.content
-                //intent.putExtra(Intent.EXTRA_TEXT, content)
+                viewModel.edit(post)
                 editPostLauncher.launch(post.content)
             }
 
@@ -45,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onShare(post: Post) {
-//                viewModel.shareById(post.id)
+                viewModel.shareById(post.id)
                 val intent = Intent().apply {
                     action = Intent.ACTION_SEND
                     putExtra(Intent.EXTRA_TEXT, post.content)
@@ -54,6 +48,19 @@ class MainActivity : AppCompatActivity() {
                 val shareIntent =
                     Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
+            }
+
+            override fun onExtVideo(videoUrl: String) {
+                if (videoUrl != "") {
+                    val intent = Intent().apply {
+                        action = Intent.ACTION_SEND
+                        putExtra(Intent.EXTRA_TEXT, videoUrl)
+                        type = "text/plain"
+                    }
+                    val videoIntent =
+                        Intent.createChooser(intent, "Переходим в приложение Youtube")
+                    startActivity(videoIntent)
+                }
             }
         })
 
@@ -71,11 +78,6 @@ class MainActivity : AppCompatActivity() {
             newPostLauncher.launch(Unit)
         }
 
-//        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
-//            result ?: return@registerForActivityResult
-//            viewModel.changeContent(result)
-//            viewModel.save()
-//        }
 
 //        binding.fab.setOnClickListener {
 //            editPostLauncher.launch(Unit)

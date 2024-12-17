@@ -14,6 +14,7 @@ import ru.netology.nmedia.dto.Post
 interface OnInteractionListener {
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
+    fun onExtVideo(videoUrl : String) {}
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
 }
@@ -43,6 +44,7 @@ class PostViewHolder(
             published.text = post.published
             content.text = post.content
             like.isChecked = post.likedByMe
+            videoURL.text = post.videoUrl
             // устанавливаем кол-ва для MD виджетов
             like.text = "${post.countOfLikes}"
             share.text = "${post.countOfShare}"
