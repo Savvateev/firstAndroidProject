@@ -22,4 +22,5 @@
     <string name="chooser_share_post" translatable="false">Share post</string>
     <string name="add_post" translatable="false">Add post</string>
     <string name="description_post_cancel" translatable="false">Отмена редактирования</string>
+    <string name="youtube_video">Youtube_video</string>
 </resources>

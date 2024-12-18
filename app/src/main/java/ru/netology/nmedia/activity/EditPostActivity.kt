@@ -3,6 +3,7 @@ package ru.netology.nmedia.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityEditPostBinding
 import ru.netology.nmedia.databinding.ActivityNewPostBinding
@@ -28,6 +29,8 @@ class EditPostActivity : AppCompatActivity() {
             finish()
         }
         binding.cancel.setOnClickListener{
+            intent.putExtra(Intent.EXTRA_TEXT, "")
+            setResult(Activity.RESULT_CANCELED, intent)
             finish()
         }
     }

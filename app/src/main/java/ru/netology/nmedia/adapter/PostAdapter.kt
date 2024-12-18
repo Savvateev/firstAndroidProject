@@ -1,8 +1,11 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +17,7 @@ import ru.netology.nmedia.dto.Post
 interface OnInteractionListener {
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
-    fun onExtVideo(videoUrl : String) {}
+    fun onExtVideo(post: Post) {}
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
 }
@@ -44,7 +47,12 @@ class PostViewHolder(
             published.text = post.published
             content.text = post.content
             like.isChecked = post.likedByMe
-            videoURL.text = post.videoUrl
+            if (post.videoUrl == "") {
+                videoImage.setVisibility(View.GONE)
+            }
+            else {
+                videoImage.setVisibility(View.VISIBLE)
+            }
             // устанавливаем кол-ва для MD виджетов
             like.text = "${post.countOfLikes}"
             share.text = "${post.countOfShare}"
@@ -74,6 +82,10 @@ class PostViewHolder(
             share.setOnClickListener{
                 onInteractionListener.onShare(post)
             }
+            videoImage.setOnClickListener{
+                onInteractionListener.onExtVideo(post)
+        }
+
         }
     }
 }

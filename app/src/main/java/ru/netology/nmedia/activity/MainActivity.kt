@@ -1,6 +1,7 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,8 @@ import ru.netology.nmedia.adapter.PostsAdapter
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
+import java.net.URI
+import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,11 +21,13 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val viewModel: PostViewModel by viewModels()
+
         val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
             result ?: return@registerForActivityResult
             viewModel.changeContent(result)
             viewModel.save()
         }
+
         val adapter = PostsAdapter(object : OnInteractionListener {
 
             override fun onEdit(post: Post) {
@@ -50,16 +55,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(shareIntent)
             }
 
-            override fun onExtVideo(videoUrl: String) {
-                if (videoUrl != "") {
-                    val intent = Intent().apply {
-                        action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, videoUrl)
-                        type = "text/plain"
-                    }
-                    val videoIntent =
-                        Intent.createChooser(intent, "Переходим в приложение Youtube")
-                    startActivity(videoIntent)
+            override fun onExtVideo(post: Post) {
+                if (post.videoUrl != "") {
+                    viewModel.extVideoById(post.id)
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.videoUrl))
+                    startActivity(intent)
                 }
             }
         })
