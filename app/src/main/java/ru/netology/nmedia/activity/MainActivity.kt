@@ -1,8 +1,10 @@
 package ru.netology.nmedia.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.ActivityResult
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity() {
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
                 editPostLauncher.launch(post.content)
+                if (intent.getStringExtra(Intent.EXTRA_TEXT) == "123") {
+                    viewModel.cancelEdit()
+                }
             }
 
             override fun onLike(post: Post) {
@@ -56,11 +61,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onExtVideo(post: Post) {
-                if (post.videoUrl != "") {
-                    viewModel.extVideoById(post.id)
+                // YouTube
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.videoUrl))
                     startActivity(intent)
-                }
             }
         })
 
