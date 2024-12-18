@@ -25,9 +25,14 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
 
         val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
+            if (result == null) {
+                viewModel.cancelEdit()
+                return@registerForActivityResult
+            }
+            else {
+                result?.let { viewModel.changeContent(it) }
+                viewModel.save()
+            }
         }
 
         val adapter = PostsAdapter(object : OnInteractionListener {
@@ -35,9 +40,6 @@ class MainActivity : AppCompatActivity() {
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
                 editPostLauncher.launch(post.content)
-                if (intent.getStringExtra(Intent.EXTRA_TEXT) == "123") {
-                    viewModel.cancelEdit()
-                }
             }
 
             override fun onLike(post: Post) {
