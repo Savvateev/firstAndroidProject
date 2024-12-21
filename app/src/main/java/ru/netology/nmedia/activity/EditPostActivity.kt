@@ -29,7 +29,7 @@ class EditPostActivity : AppCompatActivity() {
             finish()
         }
         binding.cancel.setOnClickListener{
-            intent.putExtra(Intent.EXTRA_TEXT, "123")
+            intent.putExtra(Intent.EXTRA_TEXT, "")
             setResult(Activity.RESULT_CANCELED, intent)
             finish()
         }

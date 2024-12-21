@@ -145,9 +145,4 @@ class PostRepositoryInMemoryImpl : PostRepository {
         posts = posts.filter { it.id != id }
         data.value = posts
     }
-
-    override fun extVideo(id: Long) {
-
-    }
-
 }
