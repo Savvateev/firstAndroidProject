@@ -24,6 +24,9 @@ class PostRepositoryFileImpl(
             context.openFileInput(filename).bufferedReader().use {
                 posts = gson.fromJson(it, type)
                 data.value = posts
+                // находим максимальное значение id в загруженных данных
+                val maxId = posts.maxByOrNull { it.id }?.id
+                nextId = maxId!! + 1
             }
         } else {
             // если нет, записываем пустой массив
