@@ -53,6 +53,8 @@ dependencies {
     val activityVersion = "1.9.3"
     val lifecycleVersion = "2.8.7"
     val gson_version = "2.11.0"
+    val fragment_ktxVersion = "1.3.1"
+    val nav_version = "2.3.4"
 
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
@@ -63,6 +65,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("com.google.code.gson:gson:$gson_version")
+    implementation("androidx.fragment:fragment-ktx:$fragment_ktxVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     testImplementation("junit:junit:$junitVersion")
     androidTestImplementation("androidx.test.ext:junit:$extJunitVersion")
